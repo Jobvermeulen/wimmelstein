@@ -24,9 +24,9 @@ public class GuitarController {
         return service.getGuitars();
     }
 
-    @RequestMapping(value = "{guitar}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Guitar getGuitarById(@PathVariable String guitar) {
-        return service.getGuitar(guitar);
+    @RequestMapping(value = "{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Guitar getGuitarById(@PathVariable String id) {
+        return service.getGuitar(id);
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
