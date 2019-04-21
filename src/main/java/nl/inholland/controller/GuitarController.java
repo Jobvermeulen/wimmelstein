@@ -33,4 +33,9 @@ public class GuitarController {
     public void addGuitar(@RequestBody Guitar guitar) {
         service.addGuitar(guitar);
     }
+
+    @RequestMapping(value = "brand/{brand}")
+    public List<Guitar> getGuitarsByBrand(@PathVariable String brand) {
+        return service.getGuitarsByBrand(brand);
+    }
 }

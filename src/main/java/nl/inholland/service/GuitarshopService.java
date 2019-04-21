@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 @Service
 public class GuitarshopService {
 
-    List<Guitar> guitars = new ArrayList<>(
+    private List<Guitar> guitars = new ArrayList<>(
             Arrays.asList(
                     new Guitar("ft", "Fender", "Telecaster", 1450),
                     new Guitar("fs", "Fender", "Stratocaster", 1750),
@@ -44,5 +44,11 @@ public class GuitarshopService {
 
     public void addGuitar(Guitar guitar) {
         guitars.add(guitar);
+    }
+
+    public List<Guitar> getGuitarsByBrand(String brand) {
+        return guitars.stream()
+                .filter(guitar -> guitar.getBrand().equals(brand))
+                .collect(Collectors.toList());
     }
 }
