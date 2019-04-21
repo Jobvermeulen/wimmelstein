@@ -5,11 +5,13 @@ public class Guitar {
     String id;
     String brand;
     String model;
+    int price;
 
-    public Guitar(String id, String brand, String model) {
+    public Guitar(String id, String brand, String model, int price) {
         this.id = id;
         this.brand = brand;
         this.model = model;
+        this.price = price;
     }
 
     public Guitar() {}
@@ -34,12 +36,21 @@ public class Guitar {
         this.model = model;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
     @Override
     public String toString() {
         return "Guitar{" +
                 "id='" + id + '\'' +
                 ", brand='" + brand + '\'' +
                 ", model='" + model + '\'' +
+                ", price=" + price +
                 '}';
     }
 }

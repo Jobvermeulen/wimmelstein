@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import java.awt.*;
-
 @RestController
 @RequestMapping("/guitars")
 public class GuitarController {
@@ -20,8 +18,10 @@ public class GuitarController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Guitar> getAllGuitars() {
-        return service.getGuitars();
+    public List<Guitar> getAllGuitars(@RequestParam(required = false) boolean sorted,
+                                      @RequestParam(required = false, defaultValue = "0") int minimum,
+                                      @RequestParam(required = false, defaultValue = "" + Integer.MAX_VALUE) int limit) {
+        return service.getGuitars(sorted, minimum, limit);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

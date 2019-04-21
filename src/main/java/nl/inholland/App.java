@@ -1,6 +1,5 @@
 package nl.inholland;
 
-import nl.inholland.model.Guitar;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
