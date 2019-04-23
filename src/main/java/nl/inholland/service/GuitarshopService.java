@@ -23,10 +23,10 @@ public class GuitarshopService {
 
     public List<Guitar> getGuitars(boolean sorted, int minumum, int limit) {
         Stream<Guitar> guitarStream = guitars.stream()
-                .filter(guitar -> guitar.getPrice() > minumum);
+                .filter(guitar -> guitar.getPrice() >=  minumum);
 
         if (sorted) {
-            guitarStream = guitars.stream()
+            guitarStream = guitarStream
                     .sorted((guitar1, guitar2) -> guitar1.getPrice() - guitar2.getPrice());
         }
 
