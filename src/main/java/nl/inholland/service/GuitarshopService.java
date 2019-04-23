@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -21,17 +22,17 @@ public class GuitarshopService {
             )
     );
 
-    public List<Guitar> getGuitars(boolean sorted, int minumum, int limit) {
+    public List<Guitar> getGuitars(boolean sorted, int minumum, int pageSize) {
         Stream<Guitar> guitarStream = guitars.stream()
                 .filter(guitar -> guitar.getPrice() >=  minumum);
 
         if (sorted) {
             guitarStream = guitarStream
-                    .sorted((guitar1, guitar2) -> guitar1.getPrice() - guitar2.getPrice());
+                    .sorted(Comparator.comparingInt(Guitar::getPrice));
         }
 
         return guitarStream
-                .limit(limit)
+                .limit(pageSize)
                 .collect(Collectors.toList());
     }
 
