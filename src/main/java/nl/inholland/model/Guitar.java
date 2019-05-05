@@ -9,7 +9,8 @@ public class Guitar {
     public Guitar() {}
 
     @Id
-    @GeneratedValue
+    @SequenceGenerator(name="guitar_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "guitar_seq")
     private long id;
 
     private String brand;

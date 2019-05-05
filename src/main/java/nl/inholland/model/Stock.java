@@ -1,14 +1,13 @@
 package nl.inholland.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Stock {
 
     @Id
-    @GeneratedValue
+    @SequenceGenerator(name = "stock_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "stock_seq")
     private long id;
 
     private long guitarId;
