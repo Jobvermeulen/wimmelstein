@@ -1,6 +1,7 @@
 package nl.inholland.service;
 
 import nl.inholland.model.Guitar;
+import nl.inholland.model.Stock;
 import nl.inholland.repository.GuitarRepository;
 import nl.inholland.repository.StockRepository;
 import org.springframework.stereotype.Service;
@@ -30,5 +31,9 @@ public class GuitarService {
 
     public int getStockValue(long id) {
         return stockRepository.getStockValueById(id);
+    }
+
+    public Iterable<Stock> getGuitarsInStockMinimumOf(int min) {
+        return stockRepository.getAllByQuantityGreaterThanEqualOrderByQuantityDesc(min);
     }
 }
