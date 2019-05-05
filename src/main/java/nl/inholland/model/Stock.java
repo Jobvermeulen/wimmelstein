@@ -6,10 +6,11 @@ import javax.persistence.*;
 public class Stock {
 
     @Id
-    @SequenceGenerator(name = "stock_seq")
+    @SequenceGenerator(name = "stock_seq", initialValue = 1000001)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "stock_seq")
     private long id;
 
+    @Column(unique = true)
     private long guitarId;
     private int quantity;
 

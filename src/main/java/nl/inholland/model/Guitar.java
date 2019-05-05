@@ -9,7 +9,7 @@ public class Guitar {
     public Guitar() {}
 
     @Id
-    @SequenceGenerator(name="guitar_seq")
+    @SequenceGenerator(name="guitar_seq", initialValue = 5000001)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "guitar_seq")
     private long id;
 
