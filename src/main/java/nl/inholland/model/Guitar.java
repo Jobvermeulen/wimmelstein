@@ -1,23 +1,35 @@
 package nl.inholland.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"brand", "model"})})
 public class Guitar {
 
-    String id;
-    String brand;
-    String model;
-    int price;
+    public Guitar() {}
 
-    public Guitar(String id, String brand, String model, int price) {
-        this.id = id;
+    @Id
+    @GeneratedValue
+    private long id;
+
+    private String brand;
+    private String model;
+    private int price;
+
+
+    public Guitar(String brand, String model, int price) {
         this.brand = brand;
         this.model = model;
         this.price = price;
     }
 
-    public Guitar() {}
+    public Guitar(String line) {
 
-    public String getId() {
-        return id;
+        this (
+                line.split(",")[0],
+                line.split(",")[1],
+                Integer.parseInt(line.split(",")[2])
+        );
     }
 
     public String getBrand() {
@@ -44,10 +56,14 @@ public class Guitar {
         this.price = price;
     }
 
+    public long getId() {
+        return id;
+    }
+
     @Override
     public String toString() {
         return "Guitar{" +
-                "id='" + id + '\'' +
+                "id=" + id +
                 ", brand='" + brand + '\'' +
                 ", model='" + model + '\'' +
                 ", price=" + price +
