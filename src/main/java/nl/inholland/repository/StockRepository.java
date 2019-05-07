@@ -8,7 +8,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface StockRepository extends CrudRepository<Stock, Long> {
 
-    @Query("SELECT g.price * s.quantity from Guitar g, Stock s where s.guitarId = g.id and g.id = ?1")
+    @Query("SELECT g.price * s.quantity from Guitar g, Stock s " +
+            "where s.guitarId = g.id " +
+            "and g.id = ?1")
     public int getStockValueById(long id);
 
     public Iterable<Stock> getAllByQuantityGreaterThanEqualOrderByQuantityDesc(int min);
