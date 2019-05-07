@@ -1,5 +1,6 @@
 package nl.inholland.controller;
 
+import nl.inholland.model.Stock;
 import nl.inholland.service.GuitarshopService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,5 +21,15 @@ public class StockController {
     @RequestMapping(value = "value/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public int getStockValueByGuitarId(@PathVariable long id) {
         return service.getStockValueByGuitarId(id);
+    }
+
+    @RequestMapping(value ="{id}", method = RequestMethod.DELETE)
+    public void deleteStockItem(@PathVariable long id) {
+        service.deleteStockItem(id);
+    }
+
+    @RequestMapping(value ="", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Iterable<Stock> getAllStockItems() {
+        return service.getAllStock();
     }
 }

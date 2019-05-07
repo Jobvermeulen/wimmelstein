@@ -8,15 +8,14 @@ import javax.persistence.*;
 @Entity
 public class Stock {
 
+    @OneToOne
+    private Guitar guitar;
+
     @Id
     @SequenceGenerator(name = "stock_seq", initialValue = 10000001)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "stock_seq")
     private long id;
 
-    @OneToOne
-    @Fetch(FetchMode.JOIN)
-    @JoinColumn(name = "guitar_id")
-    private Guitar guitar;
     private int quantity;
     private Stock() {}
 

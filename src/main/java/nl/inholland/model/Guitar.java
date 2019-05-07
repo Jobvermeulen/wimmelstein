@@ -6,6 +6,9 @@ import javax.persistence.*;
 @Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"brand", "model"})})
 public class Guitar {
 
+    @OneToOne
+    private Stock stock;
+
     @Id
     @SequenceGenerator(name="guitar_seq", initialValue = 1000001)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "guitar_seq")
@@ -13,6 +16,7 @@ public class Guitar {
     String brand;
     String model;
     int price;
+
 
     public Guitar(String brand, String model, int price) {
 

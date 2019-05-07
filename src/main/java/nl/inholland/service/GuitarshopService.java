@@ -1,6 +1,7 @@
 package nl.inholland.service;
 
 import nl.inholland.model.Guitar;
+import nl.inholland.model.Stock;
 import nl.inholland.repository.GuitarRepository;
 import nl.inholland.repository.StockRepository;
 import org.springframework.stereotype.Service;
@@ -30,5 +31,13 @@ public class GuitarshopService {
 
     public int getStockValueByGuitarId(long id) {
         return stockRepository.getStockValueByGuitarId(id);
+    }
+
+    public void deleteStockItem(long id) {
+        stockRepository.delete(stockRepository.findById(id).orElseThrow(IllegalArgumentException::new));
+    }
+
+    public Iterable<Stock> getAllStock() {
+        return stockRepository.findAll();
     }
 }
