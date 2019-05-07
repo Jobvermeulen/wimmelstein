@@ -43,7 +43,7 @@ public class MyApplicationRunner implements ApplicationRunner {
          */
         List<Guitar> guitars = (List<Guitar>) guitarRepository.findAll();
         guitars.stream()
-                .map(guitar -> guitar.getId())
+                .map(Guitar::getId)
                 .forEach(a -> stockRepository.save(new Stock(a, new Random().nextInt(10))));
 
 
@@ -53,4 +53,5 @@ public class MyApplicationRunner implements ApplicationRunner {
         stockRepository.findAll()
                 .forEach(System.out::println);
     }
+
 }
