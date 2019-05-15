@@ -2,6 +2,7 @@ package nl.inholland.controller;
 
 import nl.inholland.model.Guitar;
 import nl.inholland.service.GuitarshopService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +21,7 @@ public class GuitarController {
         return service.getAllGuitars();
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(value = "", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void addGuitar(@RequestBody Guitar guitar) {
         service.addGuitar(guitar);
