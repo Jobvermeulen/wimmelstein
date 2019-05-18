@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 public class Stock {
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     private Guitar guitar;
 
     @Id
