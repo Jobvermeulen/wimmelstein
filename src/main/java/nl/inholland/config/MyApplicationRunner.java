@@ -44,6 +44,4 @@ public class MyApplicationRunner implements ApplicationRunner {
         stockRepository.findAll()
                 .forEach(System.out::println);
     }
-
-
 }

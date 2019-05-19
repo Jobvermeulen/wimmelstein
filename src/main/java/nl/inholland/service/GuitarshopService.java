@@ -25,6 +25,10 @@ public class GuitarshopService {
         guitarRepository.save(guitar);
     }
 
+    public Guitar getGuitarById(long id) {
+        return guitarRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+    }
+
     public void deleteGuitar(long id) {
         guitarRepository.delete(guitarRepository.findById(id).orElseThrow(IllegalArgumentException::new));
     }
