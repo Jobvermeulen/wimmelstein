@@ -3,6 +3,7 @@ package nl.inholland.controller;
 import nl.inholland.model.Guitar;
 import nl.inholland.service.GuitarshopService;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -20,12 +21,14 @@ public class GuitarController {
         return service.getAllGuitars();
     }
 
-    @RequestMapping(value = "", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void addGuitar(@RequestBody Guitar guitar) {
+    @PreAuthorize("hasRole('ADMIN')")
+    @RequestMapping(value = "secure", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public String addGuitar(@RequestBody Guitar guitar) {
         service.addGuitar(guitar);
+        return String.valueOf(guitar.getId());
     }
 
-    @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "secure/{id}", method = RequestMethod.DELETE)
     public void deleteGuitar(@PathVariable long id) {
         service.deleteGuitar(id);
     }
