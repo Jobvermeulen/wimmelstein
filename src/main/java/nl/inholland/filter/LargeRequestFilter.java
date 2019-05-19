@@ -22,10 +22,7 @@ public class LargeRequestFilter implements Filter {
              logger.severe( "request with size " + size + " was rejected");
              throw new ServletException("Request too large");
          } else {
-             chain.doFilter(request, response);
+             chain.doFilter(request, response); // pass on to the next filter
          }
-
-
-
     }
 }

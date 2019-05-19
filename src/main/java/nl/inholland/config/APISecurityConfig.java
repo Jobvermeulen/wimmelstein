@@ -2,26 +2,27 @@ package nl.inholland.config;
 
 import nl.inholland.filter.APIKeyAuthFilter;
 import nl.inholland.repository.ApiKeyRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
 
 @Configuration
 @EnableWebSecurity
 @Order(2)
 public class APISecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
+
     private ApiKeyRepository apiKeyRepository;
+
+    public  APISecurityConfig(ApiKeyRepository apiKeyRepository) {
+        this.apiKeyRepository = apiKeyRepository;
+    }
+
     @Value("X-AUTHTOKEN")
     private String headerName;
 
@@ -40,9 +41,10 @@ public class APISecurityConfig extends WebSecurityConfigurerAdapter {
 
         httpSecurity
                 .antMatcher("/guitars/**")
-                .csrf().disable()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .csrf().disable()   // disable X-site request forgery
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // If Stateless every requests needs authentication
                 .and()
-                .addFilter(filter).authorizeRequests().anyRequest().authenticated();
+                .addFilter(filter).authorizeRequests() // authorize all requests that has a correct header value
+                .anyRequest().authenticated();  // all requests are authenticated
     }
 }
