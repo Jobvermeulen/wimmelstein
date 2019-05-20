@@ -16,12 +16,12 @@ public class GuitarController {
         this.service = service;
     }
 
-    @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "open", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public Iterable<Guitar> getAllGuitars() {
         return service.getAllGuitars();
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "secure", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public String addGuitar(@RequestBody Guitar guitar) {
         service.addGuitar(guitar);
