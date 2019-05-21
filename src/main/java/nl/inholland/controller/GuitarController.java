@@ -21,7 +21,7 @@ public class GuitarController {
         return service.getAllGuitars();
     }
 
-    //@PreAuthorize("hasRole('ADMIN')")
+
     @RequestMapping(value = "", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public String addGuitar(@RequestBody Guitar guitar) {
         service.addGuitar(guitar);

@@ -2,22 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Jacks Guitar Shop</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
 
-    <script src="https://code.jquery.com/jquery-3.4.1.js" ></script>
-        <script>
-        $(document).ready(function(){
-
-
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script>
+        $(document).ready(function () {
             var url = "guitars/";
 
-
-
-            $("#submit").click(function(e){
+            $("#submit").click(function (e) {
                 e.preventDefault();
-
-                var guitar = {"brand":  $("#brand").val(),
-                    "model":  $("#model").val(),
+                var guitar = {
+                    "brand": $("#brand").val(),
+                    "model": $("#model").val(),
                     "price": $("#price").val()
                 };
 
@@ -25,26 +22,24 @@
                     type: "POST",
                     url: url,
                     data: JSON.stringify(guitar),
-                    //success: success,
                     contentType: "application/json"
                 })
-                // $.post(url,
-                //    guitar);
             });
         });
     </script>
 </head>
 <body>
-<h1>Guitars</h1>
+<header>
+    <h1>Guitars</h1>
+</header>
+<h2>Create guitar</h2>
+<form>
 
-<h2>Create new guitar</h2>
-    <form>
+    <input name="brand" id="brand" maxlength="50" placeholder="brand"><br>
+    <input name="model" id="model" maxlength="50" placeholder="model"><br>
+    <input name="price" id="price" maxlength="50" placeholder="price"><br>
 
-    Brand: <input name="brand" id="brand"><br>
-    Model: <input name="model" id="model"><br>
-    Price: <input name="price" id="price"><br>
-
-   <button name="submit" id="submit">submit</button>
+    <button name="submit" id="submit">submit</button>
 
 </form>
 </body>
