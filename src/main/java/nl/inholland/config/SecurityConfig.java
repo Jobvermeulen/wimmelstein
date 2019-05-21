@@ -28,12 +28,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.authorizeRequests()
-                .antMatchers("/").permitAll()
-                .antMatchers(HttpMethod.POST, "/guitars/**").hasRole("ADMIN")
-                .antMatchers(HttpMethod.GET,"/guitars/").hasRole("USER")
+                .antMatchers("/").permitAll()// Everybody can see root
+                .antMatchers(HttpMethod.POST, "/guitars/**").hasRole("ADMIN") // Only Admin can POST
+                .antMatchers(HttpMethod.GET,"/guitars/**").permitAll() // All users can GET
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().permitAll();
+                .formLogin().permitAll(); // The login page can be seen by everybody
     }
-
 }
