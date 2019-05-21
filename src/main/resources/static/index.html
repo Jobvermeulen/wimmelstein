@@ -22,7 +22,10 @@
                     type: "POST",
                     url: url,
                     data: JSON.stringify(guitar),
-                    contentType: "application/json"
+                    contentType: "application/json",
+                    success: function (success) {
+                        $("#result").text((succes));
+                    }
                 })
             });
         });
@@ -39,7 +42,9 @@
     <input name="model" id="model" maxlength="50" placeholder="model"><br>
     <input name="price" id="price" maxlength="50" placeholder="price"><br>
 
-    <button name="submit" id="submit">submit</button>
+    <button name="submit" id="submit">submit</button><br>
+    <div id="result" name="result"></div>
+
 
 </form>
 </body>
