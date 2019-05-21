@@ -16,19 +16,19 @@ public class GuitarController {
         this.service = service;
     }
 
-    @RequestMapping(value = "open", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public Iterable<Guitar> getAllGuitars() {
         return service.getAllGuitars();
     }
 
     //@PreAuthorize("hasRole('ADMIN')")
-    @RequestMapping(value = "secure", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public String addGuitar(@RequestBody Guitar guitar) {
         service.addGuitar(guitar);
         return String.valueOf(guitar.getId());
     }
 
-    @RequestMapping(value = "secure/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     public void deleteGuitar(@PathVariable long id) {
         service.deleteGuitar(id);
     }
