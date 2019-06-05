@@ -40,4 +40,8 @@ public class GuitarshopService {
     public Iterable<Stock> getAllStock() {
         return stockRepository.findAll();
     }
+
+    public Guitar getGuitarById(long id) {
+        return guitarRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+    }
 }

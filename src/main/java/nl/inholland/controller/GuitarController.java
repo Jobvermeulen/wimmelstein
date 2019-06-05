@@ -25,6 +25,10 @@ public class GuitarController {
         service.addGuitar(guitar);
     }
 
+    @RequestMapping(value = "{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Guitar getGuitarById(@PathVariable long id) {
+        return service.getGuitarById(id);
+    }
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     public void deleteGuitar(@PathVariable long id) {
         service.deleteGuitar(id);
