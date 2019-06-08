@@ -31,7 +31,8 @@ public class MyApplicationRunner implements ApplicationRunner {
                         line -> guitarRepository.save(
                                 new Guitar(line.split(",")[0],
                                         line.split(",")[1],
-                                        Integer.parseInt(line.split(",")[2]))
+                                        line.split(",")[2],
+                                        Integer.parseInt(line.split(",")[3]))
                         ));
 
         guitarRepository.findAll()

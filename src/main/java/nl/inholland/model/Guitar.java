@@ -1,13 +1,15 @@
 package nl.inholland.model;
 
+import lombok.Data;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 import javax.persistence.*;
 
+@Data
 @Entity
 @Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"brand", "model"})})
 public class Guitar {
 
-    @OneToOne
-    private Stock stock;
 
     @Id
     @SequenceGenerator(name="guitar_seq", initialValue = 1000001)
@@ -16,52 +18,20 @@ public class Guitar {
     String brand;
     String model;
     int price;
+    String description;
 
 
-    public Guitar(String brand, String model, int price) {
+    public Guitar(String brand, String model, String description, int price) {
 
         this.brand = brand;
         this.model = model;
         this.price = price;
+        this.description = description;
     }
 
     public Guitar() {}
 
-    public long getId() {
-        return id;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    @Override
-    public String toString() {
-        return "Guitar{" +
-                "id=" + id +
-                ", brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
-                ", price=" + price +
-                '}';
+    public void setId(long id) {
+        throw new NotImplementedException();
     }
 }
