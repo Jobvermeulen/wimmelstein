@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/guitars")
+@CrossOrigin(origins = "http://localhost:3000")
 public class GuitarController {
 
     private GuitarshopService service;
@@ -14,6 +15,7 @@ public class GuitarController {
     public GuitarController(GuitarshopService service) {
         this.service = service;
     }
+
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public Iterable<Guitar> getAllGuitars() {
