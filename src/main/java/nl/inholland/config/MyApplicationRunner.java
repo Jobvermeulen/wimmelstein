@@ -26,14 +26,16 @@ public class MyApplicationRunner implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        Files.lines(Paths.get("src/main/resources/guitars.csv"))
+        Files.lines(Paths.get("guitars.csv"))
                 .forEach(
                         line -> guitarRepository.save(
                                 new Guitar(line.split(",")[0],
                                         line.split(",")[1],
-                                        line.split(",")[2],
-                                        Integer.parseInt(line.split(",")[3]))
-                        ));
+                                        "../images/" + line.split(",")[2] + ".jpg",
+                                        Integer.parseInt(line.split(",")[4]),
+                                        line.split(",")[3])
+                                        )
+                );
 
         guitarRepository.findAll()
                 .forEach(System.out::println);

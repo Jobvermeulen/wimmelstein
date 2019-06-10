@@ -17,14 +17,24 @@ public class Guitar {
     long id;
     String brand;
     String model;
+    String image;
     int price;
     String description;
 
 
-    public Guitar(String brand, String model, String description, int price) {
+//    public Guitar(String brand, String model, String description, int price) {
+//
+//        this.brand = brand;
+//        this.model = model;
+//        this.price = price;
+//        this.description = description;
+//    }
 
+
+    public Guitar(String brand, String model, String image, int price, String description) {
         this.brand = brand;
         this.model = model;
+        this.image = image;
         this.price = price;
         this.description = description;
     }
